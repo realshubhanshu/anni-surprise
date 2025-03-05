@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>For My Anni ❤️</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff0f5;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 40px;
+            color: #ff4081;
+            margin: 10px 0 20px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: #e91e63;
+        }
+        .hidden-message {
+            display: none;
+            font-size: 24px;
+            color: #ff4081;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .floating-heart {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ff4081;
+            color: white;
+            font-weight: bold;
+            padding: 10px 25px;
+            font-size: 18px;
+            border-radius: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            pointer-events: none;
+        }
+        @keyframes slideDown {
+            0% { transform: translateX(-50%) translateY(-50px); opacity: 0; }
+            100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+        .hearts {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff4081;
+            clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 50% 75%, 18% 100%, 0% 35%);
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            from { transform: translateY(100vh); }
+            to { transform: translateY(-10vh); }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Hey My Sweet Anni! 💖</h1>
+
+<button onclick="revealSurprise()">Click Here My Love!</button>
+
+<p class="hidden-message" id="message">
+    You are the most beautiful part of my life. 🌸 <br>
+    <strong>Bunny loves you more, always! 🐰❤️</strong>
+</p>
+
+<div class="hearts" id="hearts-container"></div>
+<div class="floating-heart" id="floating-heart">Anni & Bunny Forever ❤️</div>
+
+<audio id="loveSong" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+    function revealSurprise() {
+        document.getElementById('message').style.display = 'block';
+        const floatingHeart = document.getElementById('floating-heart');
+        floatingHeart.style.animation = 'slideDown 1.5s ease forwards';
+
+        createHearts();
+
+        const music = document.getElementById('loveSong');
+        music.play();
+
+        setTimeout(() => {
+            floatingHeart.style.opacity = '0';
+        }, 3000); // Heart message disappears after 3 seconds
+    }
+
+    function createHearts() {
+        const heartsContainer = document.getElementById('hearts-container');
+        heartsContainer.innerHTML = '';
+        for (let i = 0; i < 30; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.animationDuration = `${3 + Math.random() * 3}s`;
+            heartsContainer.appendChild(heart);
+        }
+    }
+</script>
+
+</body>
+</html>
